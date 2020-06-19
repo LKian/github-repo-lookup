@@ -10,7 +10,7 @@ const fetchRepos = (username) =>
       return response.json();
     })
     .then((data) => {
-      return data[0];
+      return data;
     });
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       usernameWIP: "",
       username: "",
-      repos: [],
+      listOfRepos: [],
     };
   }
 
@@ -44,12 +44,16 @@ class App extends Component {
     let submittedText = this.state.usernameWIP;
 
     await fetchRepos(this.state.username).then(function (data) {
-      console.log(data);
+      console.log("47777 ", data);
+      return data;
+      // console.log("state is ", this.state);
+      this.setState({ listOfRepos: data });
     });
 
     this.setState({
       usernameWIP: "",
       username: submittedText,
+      // listOfRepos: data,
     });
   };
 
@@ -62,6 +66,7 @@ class App extends Component {
             username={this.state.username}
             onSubmit={this.handleSubmit}
             handleChange={this.handleChange}
+            data={this.state.data}
           />
         </header>
       </div>
