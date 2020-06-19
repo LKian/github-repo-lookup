@@ -43,18 +43,19 @@ class App extends Component {
     e.preventDefault();
     let submittedText = this.state.usernameWIP;
 
+    let repoArray = [];
+
     await fetchRepos(this.state.username).then(function (data) {
-      console.log("47777 ", data);
-      return data;
-      // console.log("state is ", this.state);
-      this.setState({ listOfRepos: data });
+      console.log("Line 47: ", data);
+      repoArray = data;
     });
 
     this.setState({
       usernameWIP: "",
       username: submittedText,
-      // listOfRepos: data,
+      listOfRepos: repoArray,
     });
+    console.log(this.state);
   };
 
   render() {
@@ -66,7 +67,7 @@ class App extends Component {
             username={this.state.username}
             onSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            data={this.state.data}
+            repos={this.state.listOfRepos}
           />
         </header>
       </div>
