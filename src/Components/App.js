@@ -18,8 +18,8 @@ class App extends Component {
     super(props);
 
     this.state = {
+      usernameWIP: "",
       username: "",
-      submittedUsername: "",
       repos: [],
     };
   }
@@ -34,26 +34,22 @@ class App extends Component {
 
   handleChange = (e) => {
     e.preventDefault();
-    console.log("Changed!  ");
-
     this.setState({
-      username: e.target.value,
+      usernameWIP: e.target.value,
     });
   };
 
   handleSubmit = async (e) => {
-    let submittedText = this.state.username;
-
     e.preventDefault();
-    this.setState({
-      submittedUsername: submittedText,
-      username: "",
-    });
-    console.log(
-      `submitted text is ${submittedText} ${this.state.submittedUsername}`
-    );
-    await fetchRepos(this.state.submittedUsername).then(function (data) {
+    let submittedText = this.state.usernameWIP;
+
+    await fetchRepos(this.state.username).then(function (data) {
       console.log(data);
+    });
+
+    this.setState({
+      usernameWIP: "",
+      username: submittedText,
     });
   };
 
@@ -62,8 +58,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <SearchForm
-            searchText={this.state.username}
-            submittedText={this.state.submittedUsername}
+            usernameWIP={this.state.usernameWIP}
+            username={this.state.username}
             onSubmit={this.handleSubmit}
             handleChange={this.handleChange}
           />
