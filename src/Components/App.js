@@ -10,7 +10,7 @@ const fetchRepos = (username) =>
       return response.json();
     })
     .then((data) => {
-      return data[0];
+      return data;
     });
 
 class App extends Component {
@@ -18,9 +18,9 @@ class App extends Component {
     super(props);
 
     this.state = {
+      usernameWIP: "",
       username: "",
-      submittedUsername: "",
-      repos: [],
+      listOfRepos: [],
     };
   }
 
@@ -34,26 +34,26 @@ class App extends Component {
 
   handleChange = (e) => {
     e.preventDefault();
-    console.log("Changed!  ");
-
     this.setState({
-      username: e.target.value,
+      usernameWIP: e.target.value,
     });
   };
 
   handleSubmit = async (e) => {
-    let submittedText = this.state.username;
-
     e.preventDefault();
-    this.setState({
-      submittedUsername: submittedText,
-      username: "",
+    let submittedText = this.state.usernameWIP;
+
+    await fetchRepos(this.state.username).then(function (data) {
+      console.log("47777 ", data);
+      return data;
+      // console.log("state is ", this.state);
+      this.setState({ listOfRepos: data });
     });
-    console.log(
-      `submitted text is ${submittedText} ${this.state.submittedUsername}`
-    );
-    await fetchRepos(this.state.submittedUsername).then(function (data) {
-      console.log(data);
+
+    this.setState({
+      usernameWIP: "",
+      username: submittedText,
+      // listOfRepos: data,
     });
   };
 
@@ -62,10 +62,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <SearchForm
-            searchText={this.state.username}
-            submittedText={this.state.submittedUsername}
+            usernameWIP={this.state.usernameWIP}
+            username={this.state.username}
             onSubmit={this.handleSubmit}
             handleChange={this.handleChange}
+            data={this.state.data}
           />
         </header>
       </div>

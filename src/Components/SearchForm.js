@@ -10,7 +10,7 @@ class SearchForm extends Component {
         <TextField
           id="github-user-name"
           label="Username"
-          value={this.props.searchText}
+          value={this.props.usernameWIP}
           onChange={this.props.handleChange}
           variant="outlined"
         />
@@ -18,8 +18,9 @@ class SearchForm extends Component {
         <Button className="form-submit" type={"submit"}>
           Submit
         </Button>
-        <p>this is search text --- {this.props.searchText}</p>
-        <p>this is submitted text --- {this.props.submittedText}</p>
+        <p>this is username WIP --- {this.props.usernameWIP}</p>
+        <p>this is username --- {this.props.username}</p>
+        <p>this is data --- </p>
       </StyledForm>
     );
   }
