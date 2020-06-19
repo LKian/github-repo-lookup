@@ -3,6 +3,8 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import ErrorIcon from "@material-ui/icons/Error";
+
 class SearchForm extends Component {
   render() {
     return (
@@ -14,13 +16,16 @@ class SearchForm extends Component {
           onChange={this.props.handleChange}
           variant="outlined"
         />
-
         <Button className="form-submit" type={"submit"}>
           Submit
         </Button>
-        <p>this is username WIP --- {this.props.usernameWIP}</p>
-        <p>this is username --- {this.props.username}</p>
-        <p>this is data --- </p>
+        {this.props.repos.message === "Not Found" ? (
+          <div>
+            <ErrorIcon /> Enter valid GitHub username
+          </div>
+        ) : (
+          this.props.repos.map((item) => item.name)
+        )}
       </StyledForm>
     );
   }
