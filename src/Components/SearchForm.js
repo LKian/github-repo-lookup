@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
 import ErrorIcon from "@material-ui/icons/Error";
 
 class SearchForm extends Component {
@@ -24,7 +23,15 @@ class SearchForm extends Component {
             <ErrorIcon /> Enter valid GitHub username
           </div>
         ) : (
-          this.props.repos.map((item) => item.name)
+          this.props.repos.map((item) => {
+            console.log("ITEM on li 28: ", item);
+            return (
+              <div>
+                <h4> {item.name} </h4>
+                <a href="{item.html_url}">View Repo</a>
+              </div>
+            );
+          })
         )}
       </StyledForm>
     );
