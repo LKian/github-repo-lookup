@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
+import SearchResults from "./SearchResults";
 
 const githubRepoURL = (submittedUsername) =>
   `https://api.github.com/users/${submittedUsername}/repos`;
@@ -69,6 +70,7 @@ class App extends Component {
             handleChange={this.handleChange}
             repos={this.state.listOfRepos}
           />
+          <SearchResults repos={this.state.listOfRepos} />
         </header>
       </div>
     );
