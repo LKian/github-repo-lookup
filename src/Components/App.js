@@ -3,15 +3,16 @@ import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 
 const githubRepoURL = (submittedUsername) =>
-  `https://api.github.com/users/${submittedUsername}/repos`;
+  `https://api.github.com/users/${submittedUsername}/repos?sort=updated`;
 
 const fetchRepos = (username) =>
   fetch(githubRepoURL(username))
     .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
+      let data = response.json();
       return data;
+    })
+    .catch((error) => {
+      console.log(error);
     });
 
 class App extends Component {
@@ -22,15 +23,14 @@ class App extends Component {
       usernameWIP: "",
       username: "",
       listOfRepos: [],
+      validUsername: false,
     };
   }
 
   async componentDidMount() {
     console.log("This component did mount.");
 
-    await fetchRepos().then(function (data) {
-      console.log("Data is : ", data);
-    });
+    await fetchRepos();
   }
 
   handleChange = (e) => {
@@ -56,22 +56,22 @@ class App extends Component {
       username: submittedText,
       listOfRepos: repoArray,
     });
-    console.log(this.state);
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <SearchForm
-            usernameWIP={this.state.usernameWIP}
-            username={this.state.username}
-            onSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            repos={this.state.listOfRepos}
-          />
-          <SearchResults repos={this.state.listOfRepos} />
-        </header>
+        <SearchForm
+          usernameWIP={this.state.usernameWIP}
+          username={this.state.username}
+          onSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          listOfRepos={this.state.listOfRepos}
+        />
+        <SearchResults
+          listOfRepos={this.state.listOfRepos}
+          username={this.state.username}
+        />
       </div>
     );
   }
