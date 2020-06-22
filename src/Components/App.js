@@ -24,13 +24,15 @@ class App extends Component {
       username: "",
       listOfRepos: [],
       validUsername: false,
+      isLoading: false,
     };
   }
 
   async componentDidMount() {
     console.log("This component did mount.");
-
+    this.setState({ isLoading: true });
     await fetchRepos();
+    this.setState({ isLoading: false });
   }
 
   handleChange = (e) => {
@@ -43,11 +45,10 @@ class App extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     let submittedText = this.state.usernameWIP;
-
     let repoArray = [];
 
     await fetchRepos(this.state.username).then(function (data) {
-      console.log("Line 47: ", data);
+      console.log("Data : ", data);
       repoArray = data;
     });
 
@@ -55,6 +56,7 @@ class App extends Component {
       usernameWIP: "",
       username: submittedText,
       listOfRepos: repoArray,
+      isLoading: true,
     });
   };
 

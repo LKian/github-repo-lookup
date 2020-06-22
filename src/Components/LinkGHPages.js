@@ -4,24 +4,19 @@ import Link from "@material-ui/core/Link";
 
 class LinkGHPages extends Component {
   render() {
+    console.log("from LinkGHPages ", this.props);
     return (
-      <styledLinkGHPages>
-        {" "}
-        {/* const githubPages = repo.has_pages ? ( */}
-        <Link variant="body2" href={this.props.url} size="small">
-          Live Demo
-        </Link>
-        {/* ) : null; */}
-      </styledLinkGHPages>
+      <StyledLinkGHPages>
+        {this.props.has_pages ? (
+          <Link variant="body2" href={this.props.URLPage} size="small">
+            Live Demo
+          </Link>
+        ) : null}
+      </StyledLinkGHPages>
     );
   }
 }
 
-const styledLinkGHPages = styled.div`
-  width: 100%;
-  h4 {
-    text-align: center;
-  }
-`;
+const StyledLinkGHPages = styled.div``;
 
 export default LinkGHPages;
