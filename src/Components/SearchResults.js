@@ -1,57 +1,58 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
 import Alert from "@material-ui/lab/Alert";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import Link from "@material-ui/core/Link";
+import Header from "./Header";
+import CardRepo from "./CardRepo";
 
 class SearchResults extends Component {
   render() {
-    const pages =
-      this.props.repos > 20 ? (
-        <Button size="small">Learn More</Button>
-      ) : (
-        "No pages"
-      );
-    const leah = this.props.repos.message ? (
-      <Alert severity="error">Invalid Username</Alert>
+    const repoGrid = this.props.listOfRepos.message ? (
+      <div>
+        <Alert severity="error">Invalid Username</Alert>
+      </div>
     ) : (
       <Grid container spacing={2}>
+        {5 > 3 ? <Header username={this.props.username} /> : "2020202020"}
         <Grid item xs={12}>
-          <Grid container justify="center" spacing={2}>
-            {this.props.repos.map((item) => (
-              <Grid item key={item.id}>
-                <Card>
-                  <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                      {item.name}
-                    </Typography>
-                    <Typography color="textSecondary">
-                      repo descrip here
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                    {pages}
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
+          <Grid container justify="center" spacing={4}>
+            {this.props.listOfRepos.map((repo) => {
+              //   console.log("item ", item);
+              //   const githubPages = repo.has_pages ? (
+              //     <Link variant="body2" href={repo.homepage} size="small">
+              //       Live Demo
+              //     </Link>
+              //   ) : null;
+              return (
+                <Grid item key={repo.id} className="card">
+                  <CardRepo name={repo.name} updated_at={repo.updated_at} />
+                  <CardRepo />
+                </Grid>
+              );
+            })}
           </Grid>
         </Grid>
       </Grid>
     );
 
-    return <StyledResults>{leah}</StyledResults>;
+    return <StyledResults>{repoGrid}</StyledResults>;
   }
 }
 
-const StyledResults = styled.div``;
+const StyledResults = styled.div`
+  .card {
+    min-width: 275px;
+  }
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .button {
+    flex: 1;
+  }
+`;
 
 export default SearchResults;
