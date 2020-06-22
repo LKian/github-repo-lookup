@@ -7,9 +7,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Link from "@material-ui/core/Link";
 import RepoLastUpdated from "./RepoLastUpdated";
 import LinkGHPages from "./LinkGHPages";
+import CodeIcon from "@material-ui/icons/Code";
 
 class CardRepo extends Component {
   render() {
+    console.log("< CardRepo />", this.props);
     return (
       <StyledCardRepo>
         {" "}
@@ -21,11 +23,13 @@ class CardRepo extends Component {
             <RepoLastUpdated updated_at={this.props.updated_at} />
           </CardContent>
           <CardActions className="button-container">
-            <Link variant="body2" href="#">
-              &lt; &gt;
+            <Link variant="body2" href={this.props.URLRepo}>
+              <CodeIcon />
             </Link>
-            {/* {githubPages} */}
-            {/* <LinkGHPages href={this.props.homepage} /> */}
+            <LinkGHPages
+              has_pages={this.props.has_pages}
+              URLPage={this.props.URLPage}
+            />
           </CardActions>
         </Card>
       </StyledCardRepo>
@@ -35,8 +39,8 @@ class CardRepo extends Component {
 
 const StyledCardRepo = styled.div`
   width: 100%;
-  h4 {
-    text-align: center;
+  .button-container {
+    border: 2px dashed green;
   }
 `;
 

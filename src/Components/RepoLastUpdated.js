@@ -8,8 +8,7 @@ class RepoLastUpdated extends Component {
       <StyledRepoLastUpdated>
         {" "}
         <Typography variant="caption" color="textSecondary" gutterBottom>
-          {/* Last Updated: {this.props.updatedAt.split("T")[0]} */}
-          Last Updated: {this.props.updated_at}
+          Last Updated: {this.props.updated_at.split("T")[0]}
         </Typography>
       </StyledRepoLastUpdated>
     );
