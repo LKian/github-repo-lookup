@@ -44,9 +44,6 @@ class CardRepo extends Component {
 
 const StyledCardRepo = styled.div`
   width: 100%;
-  .button-container {
-    border: 2px dashed green;
-  }
 `;
 
 export default CardRepo;
