@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Alert from "@material-ui/lab/Alert";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import CardRepo from "./CardRepo";
 
 class SearchResults extends Component {

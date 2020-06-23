@@ -17,13 +17,18 @@ class CardRepo extends Component {
         {" "}
         <Card>
           <CardContent>
-            <Typography variant="h6" color="textSecondary" gutterBottom>
+            <Typography variant="overline" color="textPrimary" gutterBottom>
               {this.props.name}
             </Typography>
             <RepoLastUpdated updated_at={this.props.updated_at} />
           </CardContent>
           <CardActions className="button-container">
-            <Link variant="body2" href={this.props.URLRepo}>
+            <Link
+              href={this.props.URLRepo}
+              target="_blank"
+              rel="noopener"
+              variant="body2"
+            >
               <CodeIcon />
             </Link>
             <LinkGHPages
