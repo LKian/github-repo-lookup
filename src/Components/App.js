@@ -5,8 +5,8 @@ import SearchResults from "./SearchResults";
 const githubRepoURL = (submittedUsername) =>
   `https://api.github.com/users/${submittedUsername}/repos?sort=updated`;
 
-const fetchRepos = (username) =>
-  fetch(githubRepoURL(username))
+const fetchRepos = (username) => {
+  return fetch(githubRepoURL(username))
     .then((response) => {
       let data = response.json();
       return data;
@@ -14,6 +14,7 @@ const fetchRepos = (username) =>
     .catch((error) => {
       console.log(error);
     });
+};
 
 class App extends Component {
   constructor(props) {
@@ -24,15 +25,12 @@ class App extends Component {
       username: "",
       listOfRepos: [],
       validUsername: false,
-      isLoading: false,
     };
   }
 
   async componentDidMount() {
-    console.log("This component did mount.");
-    this.setState({ isLoading: true });
+    console.log("Component did mount.");
     await fetchRepos();
-    this.setState({ isLoading: false });
   }
 
   handleChange = (e) => {
@@ -45,9 +43,10 @@ class App extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     let submittedText = this.state.usernameWIP;
+
     let repoArray = [];
 
-    await fetchRepos(this.state.username).then(function (data) {
+    await fetchRepos(this.state.usernameWIP).then(function (data) {
       console.log("Data : ", data);
       repoArray = data;
     });

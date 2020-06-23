@@ -8,7 +8,12 @@ class LinkGHPages extends Component {
     return (
       <StyledLinkGHPages>
         {this.props.has_pages ? (
-          <Link variant="body2" href={this.props.URLPage} size="small">
+          <Link
+            href={this.props.URLPage}
+            target="_blank"
+            rel="noopener"
+            variant="body2"
+          >
             Live Demo
           </Link>
         ) : null}
