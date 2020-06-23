@@ -23,7 +23,6 @@ class SearchForm extends Component {
 }
 
 const StyledForm = styled.form`
-  // border: 2px dashed red;
   padding: 50px 0;
   display: flex;
   align-items: center;
