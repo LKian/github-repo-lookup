@@ -23,17 +23,18 @@ class HeaderResults extends Component {
 
 const StyledHeader = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-
   h3 {
     text-align: center;
     padding: 50px 0 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   img {
     max-width: 100px;
-    padding: 0 25px;
+    padding: 25px 0;
   }
 `;
 
