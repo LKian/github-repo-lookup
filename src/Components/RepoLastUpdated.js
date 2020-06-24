@@ -16,10 +16,7 @@ class RepoLastUpdated extends Component {
 }
 
 const StyledRepoLastUpdated = styled.div`
-  width: 100%;
-  h4 {
-    text-align: center;
-  }
+  margin: 15px 0;
 `;
 
 export default RepoLastUpdated;

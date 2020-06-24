@@ -9,9 +9,9 @@ class SearchResults extends Component {
     const repoGrid = this.props.listOfRepos.message ? (
       <Alert severity="error">Invalid Username</Alert>
     ) : (
-      <Grid container spacing={2}>
+      <Grid container className="grid">
         <Grid item xs={12}>
-          <Grid container justify="center" spacing={4}>
+          <Grid container justify="center" spacing={3}>
             {this.props.listOfRepos.map((repo) => {
               return (
                 <Grid item key={repo.id} className="card">
@@ -21,6 +21,7 @@ class SearchResults extends Component {
                     has_pages={repo.has_pages}
                     URLPage={repo.homepage}
                     URLRepo={repo.html_url}
+                    description={repo.description}
                   />
                 </Grid>
               );
@@ -35,17 +36,8 @@ class SearchResults extends Component {
 }
 
 const StyledResults = styled.div`
-  .card {
-    min-width: 275px;
-  }
-  .button-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .button {
-    flex: 1;
-  }
+  max-width: 1100px;
+  margin: auto;
 `;
 
 export default SearchResults;

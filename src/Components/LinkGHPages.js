@@ -4,7 +4,6 @@ import Link from "@material-ui/core/Link";
 
 class LinkGHPages extends Component {
   render() {
-    console.log("from LinkGHPages ", this.props);
     return (
       <StyledLinkGHPages>
         {this.props.has_pages ? (

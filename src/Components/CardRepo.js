@@ -11,15 +11,14 @@ import CodeIcon from "@material-ui/icons/Code";
 
 class CardRepo extends Component {
   render() {
-    console.log("< CardRepo />", this.props);
     return (
       <StyledCardRepo>
-        {" "}
-        <Card>
+        <Card className="card">
           <CardContent>
-            <Typography variant="overline" color="textPrimary" gutterBottom>
+            <Typography variant="h6" color="textPrimary" gutterBottom>
               {this.props.name}
             </Typography>
+            <Typography variant="body2">{this.props.description}</Typography>
             <RepoLastUpdated updated_at={this.props.updated_at} />
           </CardContent>
           <CardActions className="button-container">
@@ -43,7 +42,21 @@ class CardRepo extends Component {
 }
 
 const StyledCardRepo = styled.div`
-  width: 100%;
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    width: 250px;
+    min-height: 225px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  h6 {
+    line-height: 1.2;
+  }
 `;
 
 export default CardRepo;
