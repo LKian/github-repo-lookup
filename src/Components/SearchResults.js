@@ -10,8 +10,8 @@ class SearchResults extends Component {
       <Alert severity="error">Invalid Username</Alert>
     ) : (
       <Grid container className="grid">
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={3}>
+        <Grid item xs={12} spacing={4}>
+          <Grid container justify="center" spacing={4}>
             {this.props.listOfRepos.map((repo) => {
               return (
                 <Grid item key={repo.id} className="card">

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 import Link from "@material-ui/core/Link";
 import RepoLastUpdated from "./RepoLastUpdated";
 import LinkGHPages from "./LinkGHPages";
@@ -16,9 +16,11 @@ class CardRepo extends Component {
         <Card className="card">
           <CardContent>
             <Typography variant="h6" color="textPrimary" gutterBottom>
-              {this.props.name}
+              {this.props.name.replace(/-/g, " ")}
             </Typography>
-            <Typography variant="body2">{this.props.description}</Typography>
+            <Typography variant="body2" color="textSecondary">
+              {this.props.description}
+            </Typography>
             <RepoLastUpdated updated_at={this.props.updated_at} />
           </CardContent>
           <CardActions className="button-container">
@@ -46,16 +48,26 @@ const StyledCardRepo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
     width: 250px;
     min-height: 225px;
+  }
+  h6 {
+    text-transform: capitalize;
+    min-height: 50px;
+    line-height: 1.3;
+    margin-bottom: 15px;
   }
   .button-container {
     display: flex;
     justify-content: space-between;
   }
-  h6 {
-    line-height: 1.2;
+  .button-container a {
+    text-decoration: none;
+    color: #e0e;
+  }
+  .button-container a:hover {
+    transition: all linear 0.2s;
+    color: #c93cf9;
   }
 `;
 
